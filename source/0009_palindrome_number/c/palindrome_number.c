@@ -43,19 +43,21 @@ bool isPalindrome(int x) {
       printf("num: %d, mirNum: %d\n", num, mirNum);
    #endif
 
-      if (mirNum == num) {
-         return true;
-      }
-
       // shift right
       num /= 10;
+   }
+
+   if ((mirNum == num) || (mirNum/10 == num)) {
+      return true;
+   } else {
+      return false;
    }
 
    return false;
 }
 
 int main() {
-   int x = 12121;
+   int x = 1221;
    bool y;
 
    y = isPalindrome(x);
