@@ -23,42 +23,39 @@ bool isPalindrome(int x);
 ////////////////////////////////////////////////////////////////
 bool isPalindrome(int x) {
    int nums[100];
-   int res, i = 0, j = 0, isOdd, num1, num2;
+   int mirNum = 0, num;
 
    if (x < 0) {
       return false;
+   } else if (x == 0) {
+      return true;
    } else {
-      res = x;
+      num = x;
    }
 
-   while (res) {
-      // get lsb
-      nums[i] = res % 10;
-      // shift right
-      res = res / 10;
+   while (mirNum < num) {
+      // shift left
+      mirNum *= 10;
+      // add lsb
+      mirNum += num % 10;
 
    #ifdef DEBUG
-      printf("nums[%d] = %d; res = %d\n", i, nums[i], res);
+      printf("num: %d, mirNum: %d\n", num, mirNum);
    #endif
-         i += 1;
-   }
-   // number of elements in first and second half of num
-   j = i / 2;
 
-   for (int k = 0; k < j; k++) {
-      if (nums[k] != nums[i-1-k]) {
-         return false;
+      if (mirNum == num) {
+         return true;
       }
+
+      // shift right
+      num /= 10;
    }
 
-#ifdef DEBUG
-   printf("j: %d\n", j);
-#endif
-   return true;
+   return false;
 }
 
 int main() {
-   int x = -121;
+   int x = 12121;
    bool y;
 
    y = isPalindrome(x);
